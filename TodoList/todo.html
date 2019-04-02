@@ -1,16 +1,27 @@
 <head>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
 </head>
 
 <body>
-  <h1> Todo List </h1>
-  <p>
-    <input type="text" id="inputText" />
-    <button id="btnAdd">Add</button>
-  </p>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6">
+              <div class="todolist not-done" id="todolist">
+               <h1>Todos</h1>
+                  <input type="text" class="form-control add-todo" placeholder="Add todo" id="inputText" />
+                    <hr>
+              </div>
+          </div>
 
-  <ul id="todolist">
-  </ul>
+          <div class="col-md-6">
+              <div class="todolist" id="donelist" id="donelist">
+               <h1>Done</h1>
+               <hr>
+              </div>
+          </div>
+      </div>
+  </div>
 
   <script src="todo.js"></script>
 </body>
