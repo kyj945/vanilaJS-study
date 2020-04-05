@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Infinite Scrolling 🤞</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            list-style: none;
+        }
+        .title {
+            font-size: 24px;
+            font-family: "Tahoma", sans-serif;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        ul.infinite-container {
+            display: block;
+            width: 500px;
+            margin: 0 auto;
+        }
+        li.cat {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto 0;
+        }
+        img {
+            display: inline-block;
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">Obey the cats 🐈</h1>
+    <ul class="infinite-container"></ul>
+    <script type="application/javascript">
+        const container = document.querySelector('ul.infinite-container');
+        const lastChild = () => document.querySelector('ul > li:last-child');
+        let currentLast = null;
+
+        const loadingNewCats = (newCats) => {
+            const loadingTemplate = `<li><span>Loading New Cats...</span></li>`;
+            return new Promise((resolve, reject) => {
+                container.insertAdjacentHTML('beforeend', loadingTemplate);
+                setTimeout(() => {
+                    resolve(newCats);
+                    container.removeChild(container.lastChild);
+                }, 1000)
+            })
+        }
+
+        const handleInfiniteScrolling = (entries, observer) => {
+          const $last = [...entries].pop();
+          if ($last.isIntersecting) {
+            loadingNewCats(createNewCats()).then(newCats => {
+              container.append(...newCats);
+              observer.unobserve($last.target);
+              observer.observe(lastChild());
+            });
+          }
+        };
+
+        const createNewCats = (numberOfCats=10) => {
+          const acc = [];
+          const createNewCat = () => {
+            const $li = document.createElement('li');
+            $li.className = 'cat';
+            const $img = document.createElement('img');
+            $li.appendChild($img);
+
+            $img.src = `https://source.unsplash.com/featured/?cat?t=1}`;
+            $img.alt = 'cat';
+            return $li
+          };
+          for (let i = 0; i < numberOfCats; i++) {
+            acc.push(createNewCat())
+          }
+          return acc;
+        };
+
+        const ioOptions = { root: null, threshold: 1 };
+        const io = new IntersectionObserver(handleInfiniteScrolling, ioOptions);
+        container.append(...createNewCats());
+        io.observe(lastChild());
+
+         //IntersectionObserver
+        const images = document.querySelectorAll(".image-box");
+        const lazyLoadOption = { root: null, threshold: 0.3 };
+        const lazyLoadImage = (entries, observer) => {
+            entries.forEach((entry) => {
+            const { target } = entry;
+            if(entry.isIntersecting) {// intersecting 인 경우 img 보여줌
+                target.style.backgroundImage = `url("${target.dataset.src}")`;
+                target.style.backgroundSize = `cover`;
+                target.style.backgroundColor = `transparent`;
+                target.textContent = '';
+            }
+            });
+        };
+
+        const lazyLoadingIO = new IntersectionObserver(lazyLoadImage, lazyLoadOption);
+        images.forEach(image => lazyLoadingIO.observe(image));
+      
+    </script>
+</body>
+</html>

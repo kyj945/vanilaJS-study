@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+      name="viewport"
+    />
+    <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+    <title>Document</title>
+    <style>
+      div.image-box {
+        display: block;
+        margin: 20px auto 0;
+        width: 200px;
+        height: 200px;
+        background-color: #acacac;
+        color: #ffffff;
+        text-align: center;
+        line-height: 200px;
+        font-size: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div
+        class="image-box"
+        data-src="https://source.unsplash.com/random/200x200?t=1"
+      >
+        No Image
+      </div>
+      <div
+        class="image-box"
+        data-src="https://source.unsplash.com/random/200x200?t=2"
+      >
+        No Image
+      </div>
+      <div
+        class="image-box"
+        data-src="https://source.unsplash.com/random/200x200?t=3"
+      >
+        No Image
+      </div>
+      <div
+        class="image-box"
+        data-src="https://source.unsplash.com/random/200x200?t=4"
+      >
+        No Image
+      </div>
+      <div
+        class="image-box"
+        data-src="https://source.unsplash.com/random/200x200?t=5"
+      >
+        No Image
+      </div>
+      <div
+        class="image-box"
+        data-src="https://source.unsplash.com/random/200x200?t=6"
+      >
+        No Image
+      </div>
+      <div
+        class="image-box"
+        data-src="https://source.unsplash.com/random/200x200?t=7"
+      >
+        No Image
+      </div>
+      <div
+        class="image-box"
+        data-src="https://source.unsplash.com/random/200x200?t=9"
+      >
+        No Image
+      </div>
+      <div
+        class="image-box"
+        data-src="https://source.unsplash.com/random/200x200?t=9"
+      >
+        No Image
+      </div>
+      <div
+        class="image-box"
+        data-src="https://source.unsplash.com/random/200x200?t=10"
+      >
+        No Image
+      </div>
+    </div>
+    <script type="application/javascript">
+      //IntersectionObserver
+      const images = document.querySelectorAll(".image-box");
+      const lazyLoadOption = { root: null, threshold: 0.3 };
+      const lazyLoadImage = (entries, observer) => {
+        entries.forEach((entry) => {
+          const { target } = entry;
+          if(entry.isIntersecting) {// intersecting 인 경우 img 보여줌
+            target.style.backgroundImage = `url("${target.dataset.src}")`;
+            target.style.backgroundSize = `cover`;
+            target.style.backgroundColor = `transparent`;
+            target.textContent = '';
+          }
+        });
+      };
+
+      const lazyLoadingIO = new IntersectionObserver(lazyLoadImage, lazyLoadOption);
+      images.forEach(image => lazyLoadingIO.observe(image));
+    </script>
+  </body>
+</html>
