@@ -1,0 +1,22 @@
+{
+    "C" : "16.21",
+    "Python": "12.12",
+    "Java" : "11.68",
+    "C++": "7.60",
+    "C#" : "4.67",
+    "Visual Basic" : "4.01",
+    "JavaScript" : "2.03",
+    "PHP" : "1.79",
+    "R" : "1.64",
+    "SQL" : "1.54",
+    "Groovy" : "1.51",
+    "Perl" : "1.36",
+    "Go" : "1.64",
+    "Swift" : "1.35",
+    "Ruby" : "1.22",
+    "Assembly language" : "1.17",
+    "MATLAB" : "1",
+    "Delphi/Object Pascal" : "0.86",
+    "Objective-C" : "0.84",
+    "Transact-SQL" : "0.82"
+}

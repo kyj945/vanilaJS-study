@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js" type="text/JavaScript"></script>
+</head>
+    
+<body>
+    <div id="cloud">
+
+
+    </div>
+    <script>
+        var languageRanking = {
+            "C" : "16.21",
+            "Python": "12.12",
+            "Java" : "11.68",
+            "C++": "7.60",
+            "C#" : "4.67",
+            "Visual Basic" : "4.01",
+            "JavaScript" : "2.03",
+            "PHP" : "1.79",
+            "R" : "1.64",
+            "SQL" : "1.54",
+            "Groovy" : "1.51",
+            "Perl" : "1.36",
+            "Go" : "1.64",
+            "Swift" : "1.35",
+            "Ruby" : "1.22",
+            "Assembly language" : "1.17",
+            "MATLAB" : "1",
+            "Delphi/Object Pascal" : "0.86",
+            "Objective-C" : "0.84",
+            "Transact-SQL" : "0.82"
+        };
+        
+        var width = 1000,
+            height = 600;
+        // add attribute
+        var svg = d3.select("body")
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height);
+        // method chain
+        svg.append("circle")
+            .attr("r", 50),
+            attr("cx", 300),
+            attr("cy",)
+    </script>
+</body>
+</html>
