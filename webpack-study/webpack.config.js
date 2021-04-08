@@ -9,7 +9,7 @@ module.exports = {
         filename: '[name].js'
     },
     // 모든 js 파일에 대해서 my-webpack-loader가 실행됨.
-    module: [
+    module: {
         rules: [
             {
                 test: /\.js$/,
@@ -18,5 +18,5 @@ module.exports = {
                 ]
             }
         ]
-    ]
+    }
 }
